@@ -19,8 +19,19 @@ void MatchingEngine::matchOrders() {
 
         std::cout << "TRADE " << tradeQty << " @ " <<tradePrice << std::endl;
 
-        orderBook.removeBestBuy();
-        orderBook.removeBestSell();
-        
+        Order* buy = const_cast<Order*>(bestBuy);
+        Order* sell = const_cast<Order*>(bestSell);
+
+        buy->reduceQuantity(tradeQty);
+        sell->reduceQuantity(tradeQty);
+
+        if (buy->getQuantity() == 0) {
+            orderBook.removeBestBuy();
+        }
+
+        if (sell->getQuantity() == 0) {
+            orderBook.removeBestSell();
+        }
+
     }
 }

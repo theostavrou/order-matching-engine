@@ -15,6 +15,10 @@ int Order::getQuantity() const {
     return quantity;
 }
 
+void Order::reduceQuantity(int amount) {
+    quantity -= amount;
+}
+
 OrderSide Order::getSide() const {
     return side;
 }

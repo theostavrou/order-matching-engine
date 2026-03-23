@@ -15,6 +15,7 @@ class Order {
     int getID() const;
     double getPrice() const;
     int getQuantity() const;
+    void reduceQuantity(int amount);
     OrderSide getSide() const;
 
     private:
