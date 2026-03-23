@@ -9,4 +9,5 @@ add_executable(main
     src/main.cpp
     src/order.cpp
     src/orderbook.cpp
+    Src/matchingengine.cpp
     )
