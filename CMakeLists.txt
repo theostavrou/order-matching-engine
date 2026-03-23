@@ -8,4 +8,5 @@ include_directories(include)
 add_executable(main
     src/main.cpp
     src/order.cpp
+    src/orderbook.cpp
     )
