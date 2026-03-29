@@ -60,10 +60,15 @@ The system then:
 ## Example
 
 ### Input
+Order are read from a text file:  
+
 BUY 100 10.00  
 SELL 50 9.50  
 SELL 100 10.50  
 BUY 100 11.00 
+
+Each line represents:  
+<side> <quantity> <price> 
 
 ### Output
 TRADE 50 @ 9.50  

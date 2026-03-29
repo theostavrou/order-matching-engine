@@ -1,15 +1,36 @@
+#include <fstream>
+#include <sstream>
+#include <string>
 #include <iostream>
-#include <order.h>
-#include "orderbook.h"
 #include "matchingengine.h"
 
 int main() {
     MatchingEngine engine;
 
-    engine.processOrder(Order(1, 10.0, 100, OrderSide::BUY));
-    engine.processOrder(Order(2, 9.5, 50, OrderSide::SELL));
-    engine.processOrder(Order(3, 10.5, 100, OrderSide::SELL));
-    engine.processOrder(Order(4, 11.0, 100, OrderSide::BUY));
+    std::ifstream file ("../examples/orders.txt");
+
+    if (!file.is_open()) {
+        std::cout << "Failed to open file" <<std::endl;
+    }
+    std::string line;
+
+    int orderId = 1;
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+
+        //std::cout << "Reading line: " << line << std::endl;
+
+        std::string sideStr;
+        int quantity;
+        double price;
+
+        iss >> sideStr >> quantity >> price;
+
+        OrderSide side = (sideStr == "BUY") ? OrderSide::BUY : OrderSide::SELL;
+
+        engine.processOrder(Order(orderId++, price, quantity, side));
+    }
 
     return 0;
 
